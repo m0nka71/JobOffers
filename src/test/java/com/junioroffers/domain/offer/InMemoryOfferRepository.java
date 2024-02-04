@@ -22,11 +22,6 @@ public class InMemoryOfferRepository implements OfferRepository {
     }
 
     @Override
-    public Optional<Offer> findByOfferUrl(String offerUrl) {
-        return Optional.of(offerDatabase.get(offerUrl));
-    }
-
-    @Override
     public Offer save(Offer offerToSave) {
         if(offerDatabase.values().stream().anyMatch(offer -> offer.url().equals(offerToSave.url()))) {
             throw new OfferAlreadyExistsException(offerToSave.url());

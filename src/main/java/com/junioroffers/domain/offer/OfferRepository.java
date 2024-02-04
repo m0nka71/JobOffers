@@ -11,8 +11,6 @@ public interface OfferRepository {
 
     Optional<Offer> findById(String id);
 
-    Optional<Offer> findByOfferUrl(String offerUrl);
-
     List<Offer> findAll();
 
     List<Offer> saveAll(List<Offer> offers);
