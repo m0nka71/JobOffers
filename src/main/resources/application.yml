@@ -8,6 +8,15 @@ joboffers:
     client:
       config:
         connectionTimeout: 1000
-        readTimeour: 1000
-        uri: http://ec2-3-120-147-150.eu-central-1.compute.amazonaws.com:9090/offers
+        readTimeout: 1000
+        uri: http://ec2-3-120-147-150.eu-central-1.compute.amazonaws.com
         port: 9090
+
+http:
+  offers:
+    scheduler:
+      request:
+        delay: PT3H
+
+scheduling:
+  enabled: true
