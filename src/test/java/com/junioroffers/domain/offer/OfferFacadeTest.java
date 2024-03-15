@@ -75,7 +75,7 @@ public class OfferFacadeTest {
         //given
         OfferResponseDto savedOffer = offerFacade.saveOffer(new OfferDto("Abc", "X", "123", "example123.com"));
         String savedId = savedOffer.id();
-        assertThat(offerFacade.findById(savedId).id()).isEqualTo(savedId);
+        assertThat(offerFacade.findOfferById(savedId).id()).isEqualTo(savedId);
 
         //when
         Throwable thrown = catchThrowable(() -> offerFacade.saveOffer(
@@ -93,7 +93,7 @@ public class OfferFacadeTest {
         assertThat(offerFacade.findAllOffers()).isEmpty();
 
         //when
-        Throwable thrown = catchThrowable(() -> offerFacade.findById("000"));
+        Throwable thrown = catchThrowable(() -> offerFacade.findOfferById("000"));
 
         //then
         AssertionsForClassTypes.assertThat(thrown)
@@ -108,7 +108,7 @@ public class OfferFacadeTest {
         OfferResponseDto savedOffer = offerFacade.saveOffer(new OfferDto("Abc", "Xxx", "123", "example1.com"));
 
         //when
-        OfferResponseDto offerById = offerFacade.findById(savedOffer.id());
+        OfferResponseDto offerById = offerFacade.findOfferById(savedOffer.id());
 
         //then
         assertThat(offerById).isEqualTo(OfferResponseDto.builder()

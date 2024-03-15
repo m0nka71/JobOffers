@@ -19,12 +19,6 @@ public class OfferFacade {
                 .toList();
     }
 
-    public OfferResponseDto findById(String id) {
-        return offerRepository.findById(id)
-                .map(OfferMapper::mapFromOfferToOfferDto)
-                .orElseThrow(() -> new OfferNotFoundException(id));
-    }
-
     public List<OfferResponseDto> fetchAllOffersAndSaveAllIfNotExists() {
         return offerService.fetchAllOffersAndSaveAllIfNotExists()
                 .stream()
@@ -32,10 +26,15 @@ public class OfferFacade {
                 .toList();
     }
 
+    public OfferResponseDto findOfferById(String id) {
+        return offerRepository.findById(id)
+                .map(OfferMapper::mapFromOfferToOfferDto)
+                .orElseThrow(() -> new OfferNotFoundException(id));
+    }
+
     public OfferResponseDto saveOffer(OfferDto offerDto) {
         final Offer offer = OfferMapper.mapFromOfferDtoToOffer(offerDto);
         final Offer save = offerRepository.save(offer);
         return OfferMapper.mapFromOfferToOfferDto(save);
     }
-
 }
