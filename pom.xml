@@ -23,6 +23,7 @@
         <assertj-core.version>3.19.0</assertj-core.version>
         <wiremock-jre8.version>2.35.0</wiremock-jre8.version>
         <awaitility.version>4.0.3</awaitility.version>
+        <springfox-boot-starter.version>3.0.0</springfox-boot-starter.version>
     </properties>
 
     <dependencies>
@@ -40,7 +41,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
-        <!--  UNIT TESTS -->
+        <!--UNIT TESTS-->
         <dependency>
             <groupId>org.assertj</groupId>
             <artifactId>assertj-core</artifactId>
@@ -48,6 +49,12 @@
             <scope>test</scope>
         </dependency>
         <!--  TEST CONTAINERS -->
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>testcontainers</artifactId>
+            <version>${testcontainers.version}</version>
+            <scope>test</scope>
+        </dependency>
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -60,19 +67,19 @@
             <version>${testcontainers.version}</version>
             <scope>test</scope>
         </dependency>
-        <!--  LOMBOK  -->
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.22</version>
-            <scope>provided</scope>
-        </dependency>
-        <!--  WIREMOCK  -->
+        <!--  WIREMOCK -->
         <dependency>
             <groupId>com.github.tomakehurst</groupId>
             <artifactId>wiremock-jre8-standalone</artifactId>
             <version>${wiremock-jre8.version}</version>
             <scope>test</scope>
+        </dependency>
+        <!--LOMBOK-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.22</version>
+            <scope>compile</scope>
         </dependency>
         <!--  AWAITILITY -->
         <dependency>
@@ -81,15 +88,13 @@
             <version>${awaitility.version}</version>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <!--  SWAGGER http://localhost:8080/swagger-ui/index.html#/ -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-boot-starter</artifactId>
+            <version>${springfox-boot-starter.version}</version>
+        </dependency>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    </dependencies>
 
 </project>

@@ -1,16 +1,19 @@
 spring:
   data:
     mongodb:
-      uri: mongodb://admin:admin@localhost:27017/joboffers
+      uri: mongodb://admin:admin@localhost:27017/offers
+  mvc:
+    pathmatch:
+      matching-strategy: ANT_PATH_MATCHER
 
-joboffers:
+offer:
   http:
     client:
       config:
         connectionTimeout: 1000
+        port: 5057
         readTimeout: 1000
         uri: http://ec2-3-120-147-150.eu-central-1.compute.amazonaws.com
-        port: 9090
 
 http:
   offers:
