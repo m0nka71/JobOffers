@@ -12,16 +12,17 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
+import org.springframework.dao.DuplicateKeyException;
 
 public class InMemoryOfferRepository implements OfferRepository {
 
     Map<String, Offer> database = new ConcurrentHashMap<>();
 
     @Override
-    public boolean existsByUrl(String offerUrl) {
+    public boolean existsByofferUrl(String offerUrl) {
         long count = database.values()
                 .stream()
-                .filter(offer -> offer.url().equals(offerUrl))
+                .filter(offer -> offer.offerUrl().equals(offerUrl))
                 .count();
         return count == 1;
     }
@@ -38,8 +39,8 @@ public class InMemoryOfferRepository implements OfferRepository {
 
     @Override
     public <S extends Offer> S save(S entity) {
-        if (database.values().stream().anyMatch(offer -> offer.url().equals(entity.url()))) {
-            throw new OfferAlreadyExistsException(entity.url());
+        if (database.values().stream().anyMatch(offer -> offer.offerUrl().equals(entity.offerUrl()))) {
+            throw new DuplicateKeyException(String.format("Offer with offerUrl [%s] already exists", entity.offerUrl()));
         }
         UUID id = UUID.randomUUID();
         Offer offer = new Offer(
@@ -47,7 +48,7 @@ public class InMemoryOfferRepository implements OfferRepository {
                 entity.companyName(),
                 entity.position(),
                 entity.salary(),
-                entity.url()
+                entity.offerUrl()
         );
         database.put(id.toString(), offer);
         return (S) offer;

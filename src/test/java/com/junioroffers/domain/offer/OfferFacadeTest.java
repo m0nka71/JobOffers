@@ -5,6 +5,7 @@ import com.junioroffers.domain.offer.dto.OfferDto;
 import com.junioroffers.domain.offer.dto.OfferResponseDto;
 import org.assertj.core.api.AssertionsForClassTypes;
 import org.junit.Test;
+import org.springframework.dao.DuplicateKeyException;
 
 import java.util.List;
 
@@ -52,8 +53,8 @@ public class OfferFacadeTest {
 
         //then
         assertThat(List.of(
-                offerResponseDtos.get(0).url(),
-                offerResponseDtos.get(1).url()
+                offerResponseDtos.get(0).offerUrl(),
+                offerResponseDtos.get(1).offerUrl()
         )).containsExactlyInAnyOrder("https://someurl.pl/5", "https://someother.pl/6");
     }
 
@@ -83,7 +84,7 @@ public class OfferFacadeTest {
 
         //then
         AssertionsForClassTypes.assertThat(thrown)
-                .isInstanceOf(OfferAlreadyExistsException.class)
+                .isInstanceOf(DuplicateKeyException.class)
                 .hasMessage("Offer with offerUrl [example123.com] already exists");
     }
 
@@ -116,7 +117,7 @@ public class OfferFacadeTest {
                 .companyName("Abc")
                 .position("Xxx")
                 .salary("123")
-                .url("example1.com")
+                .offerUrl("example1.com")
                 .build()
                 );
     }

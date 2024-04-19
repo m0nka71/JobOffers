@@ -12,5 +12,5 @@ record Offer(@Id String id,
                     @Field("company") String companyName,
                     @Field("position") String position,
                     @Field("salary") String salary,
-                    @Field("url") @Indexed(unique = true) String url) {
+                    @Field("url") @Indexed(unique = true) String offerUrl) {
 }
