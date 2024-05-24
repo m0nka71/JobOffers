@@ -4,6 +4,7 @@ import com.junioroffers.BaseIntegrationTest;
 import com.junioroffers.infrastructure.apivalidation.ApiValidationErrorDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.MediaType;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MvcResult;
@@ -29,6 +30,7 @@ public class DuplicateKeyExceptionIntegrationTest extends BaseIntegrationTest {
     }
 
     @Test
+    @WithMockUser
     public void should_return_409_conflict_when_offer_with_provided_url_already_exists() throws Exception {
         //step 1 - adding new offer
         //given && when
